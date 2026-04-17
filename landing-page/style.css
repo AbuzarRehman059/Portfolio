@@ -1,0 +1,131 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background: #020617;
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 15px 30px;
+    transition: 0.3s;
+}
+
+/* When scrolling */
+.nav-scrolled {
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    color: #38bdf8;
+}
+
+/* Hero */
+.hero {
+    text-align: center;
+    padding: 140px 20px;
+    background: linear-gradient(rgba(15,23,42,0.7), rgba(15,23,42,0.9)),
+                url('https://images.unsplash.com/photo-1554284126-aa88f22d8b74');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero h2 {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #cbd5f5;
+}
+
+button {
+    padding: 14px 30px;
+    border: none;
+    background: #38bdf8;
+    color: black;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #0ea5e9;
+    transform: scale(1.05);
+}
+
+/* Features */
+.features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 60px 20px;
+}
+
+.card {
+    background: #1e293b;
+    padding: 25px;
+    margin: 15px;
+    border-radius: 12px;
+    width: 220px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    background: #334155;
+}
+
+/* About */
+.about {
+    text-align: center;
+    padding: 50px;
+}
+
+/* CTA */
+.cta {
+    text-align: center;
+    padding: 80px;
+    background: #1e293b;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.6s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}

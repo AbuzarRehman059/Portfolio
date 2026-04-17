@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: radial-gradient(circle at top, #1e293b, #0f172a);
+}
+
+/* MAIN CARD */
+.app {
+    width: 420px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 18px;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+/* TITLE */
+h1 {
+    font-size: 28px;
+    color: #38bdf8;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 15px;
+}
+
+/* INPUT BOX */
+.input-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background: #1f2937;
+    color: white;
+}
+
+input::placeholder {
+    color: #9ca3af;
+}
+
+/* BUTTONS */
+button {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 10px;
+    background: #38bdf8;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    background: #0ea5e9;
+}
+
+/* FILTERS */
+.filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.filters button {
+    flex: 1;
+    background: #1f2937;
+    color: white;
+    font-size: 12px;
+}
+
+.filters button:hover {
+    background: #334155;
+}
+
+/* TASK LIST */
+ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+li {
+    background: rgba(31, 41, 55, 0.7);
+    margin: 10px 0;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+    animation: slideUp 0.3s ease;
+}
+
+li:hover {
+    transform: scale(1.02);
+}
+
+/* TASK TEXT */
+.task-text {
+    flex: 1;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.done {
+    text-decoration: line-through;
+    color: #6b7280;
+}
+
+/* ACTION BUTTONS */
+.actions button {
+    margin-left: 5px;
+    background: #ef4444;
+    color: white;
+    font-size: 12px;
+    padding: 6px 8px;
+    border-radius: 8px;
+}
+
+.actions button:first-child {
+    background: #f59e0b;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
