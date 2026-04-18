@@ -1,0 +1,91 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0f0f0f;
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: #111;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.hero {
+  text-align: center;
+  padding: 80px;
+  background: linear-gradient(#000, #222);
+}
+
+.btn {
+  background: red;
+  padding: 10px;
+  color: white;
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.card, .cart-card {
+  background: #1a1a1a;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.card img {
+  width: 100%;
+}
+
+#toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: green;
+  padding: 10px;
+  display: none;
+}
+
+.cart-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cart-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.cart-card {
+  justify-content: space-between;
+}
+
+.cart-card h3 {
+  margin: 0;
+}
+
+.cart-card button {
+  margin-top: 5px;
+  padding: 5px 10px;
+  background: red;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
