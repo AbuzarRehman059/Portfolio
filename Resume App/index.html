@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Resume Builder</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="topbar">
+  <h1>Resume Builder</h1>
+  <button onclick="toggleTheme()">🌙</button>
+</div>
+
+<!-- AUTH -->
+<div class="auth">
+  <input type="email" id="userEmail" placeholder="Email">
+  <input type="password" id="userPassword" placeholder="Password">
+  <button onclick="signup()">Sign Up</button>
+  <button onclick="login()">Login</button>
+</div>
+
+<div class="container">
+
+<!-- FORM -->
+<div class="form">
+  <label>Name</label>
+  <input type="text" id="name">
+
+  <label>Email</label>
+  <input type="text" id="email">
+
+  <label>Skills</label>
+  <textarea id="skills"></textarea>
+
+  <label>Education</label>
+  <textarea id="education"></textarea>
+
+  <input type="file" id="imageInput">
+
+  <button onclick="generateResume()">Generate</button>
+  <button onclick="downloadPDF()">Download PDF</button>
+
+  <div class="templates">
+    <button onclick="setTemplate('template1')">Classic</button>
+    <button onclick="setTemplate('template2')">Modern</button>
+    <button onclick="setTemplate('template3')">Minimal</button>
+    <button onclick="setTemplate('template4')">Card</button>
+  </div>
+</div>
+
+<!-- PREVIEW -->
+<div class="preview template1" id="resumePreview">
+
+  <div class="header">
+    <img id="previewImg">
+    <h2 id="pName">Your Name</h2>
+    <p id="pEmail">Email</p>
+  </div>
+
+  <div id="sectionsContainer">
+
+    <div class="section draggable" draggable="true">
+      <h3>Skills</h3>
+      <ul id="pSkills"></ul>
+    </div>
+
+    <div class="section draggable" draggable="true">
+      <h3>Education</h3>
+      <p id="pEducation"></p>
+    </div>
+
+  </div>
+
+</div>
+
+</div>
+
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<!-- Firebase (MODULAR VERSION - correct) -->
+<script src="script.js"></script>
+
+</body>
+</html>
