@@ -1,67 +1,75 @@
-let transactions = JSON.parse(localStorage.getItem("transactions")) || [];
+const balance = document.getElementById('balance');
+const income = document.getElementById('income');
+const expense = document.getElementById('expense');
+const list = document.getElementById('list');
+const form = document.getElementById('form');
+const text = document.getElementById('text');
+const amount = document.getElementById('amount');
 
-function addTransaction() {
-    let text = document.getElementById("text").value;
-    let amount = parseFloat(document.getElementById("amount").value);
+let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
 
-    if (text === "" || isNaN(amount)) return;
-
-    let transaction = {
-        id: Date.now(),
-        text,
-        amount
-    };
-
-    transactions.push(transaction);
-    update();
-    save();
-
-    document.getElementById("text").value = "";
-    document.getElementById("amount").value = "";
+function updateLocalStorage() {
+  localStorage.setItem('transactions', JSON.stringify(transactions));
 }
 
-function update() {
-    let list = document.getElementById("list");
-    list.innerHTML = "";
+function addTransactionDOM(transaction) {
+  const sign = transaction.amount < 0 ? '-' : '+';
 
-    let income = 0, expense = 0;
+  const item = document.createElement('li');
+  item.classList.add(transaction.amount < 0 ? 'minus' : 'plus');
 
-    transactions.forEach(t => {
-        let li = document.createElement("li");
+  item.innerHTML = `
+    ${transaction.text} 
+    <span>${sign}₹${Math.abs(transaction.amount)}</span>
+    <button class="delete-btn" onclick="removeTransaction(${transaction.id})">x</button>
+  `;
 
-    if (t.amount > 0) {
-        li.classList.add("income-item");
-    } else {
-        li.classList.add("expense-item");
-    }
-
-        li.innerHTML = `
-            ${t.text} 
-            <span class="amount">₹${t.amount}</span>
-        `;
-
-        let btn = document.createElement("button");
-        btn.innerText = "X";
-        btn.onclick = () => {
-            transactions = transactions.filter(item => item.id !== t.id);
-            update();
-            save();
-        };
-
-        li.appendChild(btn);
-        list.appendChild(li);
-
-        if (t.amount > 0) income += t.amount;
-        else expense += t.amount;
-    });
-
-    document.getElementById("income").innerText = "₹" + income;
-    document.getElementById("expense").innerText = "₹" + Math.abs(expense);
-    document.getElementById("balance").innerText = "₹" + (income + expense);
+  list.appendChild(item);
 }
 
-function save() {
-    localStorage.setItem("transactions", JSON.stringify(transactions));
+function updateValues() {
+  const amounts = transactions.map(t => t.amount);
+
+  const total = amounts.reduce((acc, val) => acc + val, 0).toFixed(2);
+  const inc = amounts.filter(a => a > 0).reduce((acc, val) => acc + val, 0).toFixed(2);
+  const exp = amounts.filter(a => a < 0).reduce((acc, val) => acc + val, 0).toFixed(2);
+
+  balance.innerText = `₹${total}`;
+  income.innerText = `₹${inc}`;
+  expense.innerText = `₹${Math.abs(exp)}`;
 }
 
-update();
+function removeTransaction(id) {
+  transactions = transactions.filter(t => t.id !== id);
+  updateLocalStorage();
+  init();
+}
+
+function addTransaction(e) {
+  e.preventDefault();
+
+  if (text.value.trim() === '' || amount.value.trim() === '') return;
+
+  const transaction = {
+    id: Date.now(),
+    text: text.value,
+    amount: +amount.value
+  };
+
+  transactions.push(transaction);
+  updateLocalStorage();
+  init();
+
+  text.value = '';
+  amount.value = '';
+}
+
+function init() {
+  list.innerHTML = '';
+  transactions.forEach(addTransactionDOM);
+  updateValues();
+}
+
+form.addEventListener('submit', addTransaction);
+
+init();
