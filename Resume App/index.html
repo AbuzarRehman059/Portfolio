@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Builder Pro</title>
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+<!-- PDF -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+
+<div class="topbar">
+  <h1>🚀 Resume Builder</h1>
+  <button onclick="toggleTheme()">🌙</button>
+</div>
+
+<div class="auth">
+  <input type="email" id="userEmail" placeholder="Email">
+  <input type="password" id="userPassword" placeholder="Password">
+  <button onclick="signup()">Sign Up</button>
+  <button onclick="login()">Login</button>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<div class="container">
+
+<!-- FORM -->
+<div class="form">
+  <input id="name" placeholder="Name" oninput="generateResume()">
+  <input id="email" placeholder="Email" oninput="generateResume()">
+  <h3>🧠 Summary</h3>
+  <textarea id="summary" placeholder="Write a short professional summary..." oninput="generateResume()"></textarea>
+  <textarea id="skills" placeholder="Skills (comma separated)" oninput="generateResume()"></textarea>
+  <textarea id="education" placeholder="Education" oninput="generateResume()"></textarea>
+  <h3>💼 Experience</h3>
+  <textarea id="experience" placeholder="Company - Role - Duration (one per line)" oninput="generateResume()"></textarea>
+
+  <h3>🚀 Projects</h3>
+  <textarea id="projects" placeholder="Project Name - Description (one per line)" oninput="generateResume()"></textarea>
+  <input type="file" id="imageInput">
+
+  <button onclick="saveResume()">💾 Save</button>
+  <button onclick="loadResume()">📂 Load</button>
+  <button onclick="downloadPDF()">📄 PDF</button>
+
+  <div class="templates">
+    <button onclick="setTemplate('t1')">Classic</button>
+    <button onclick="setTemplate('t2')">Modern</button>
+    <button onclick="setTemplate('t3')">Minimal</button>
+    <button onclick="setTemplate('t4')">Card</button>
+  </div>
+</div>
+
+<!-- PREVIEW -->
+<div class="preview t1" id="resumePreview">
+  <div class="header">
+    <img id="previewImg">
+    <h2 id="pName">Your Name</h2>
+    <p id="pEmail">Email</p>
+  </div>
+  <div class="section">
+    <h3>Summary</h3>
+    <p id="pSummary">Your summary...</p>
+  </div>
+
+  <div class="section">
+    <h3>Skills</h3>
+    <ul id="pSkills"></ul>
+  </div>
+
+  <div class="section">
+    <h3>Education</h3>
+    <p id="pEducation"></p>
+  </div>
+  <div class="section">
+    <h3>Experience</h3>
+    <ul id="pExperience"></ul>
+  </div>
+
+  <div class="section">
+    <h3>Projects</h3>
+    <ul id="pProjects"></ul>
+  </div>
+</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
